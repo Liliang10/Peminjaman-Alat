@@ -1,0 +1,26 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.x.x",
+    "react": "^18.x.x",
+    "react-dom": "^18.x.x",
+    "react-router-dom": "^6.x.x"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^4.x.x",
+    "autoprefixer": "^10.x.x",
+    "postcss": "^8.x.x",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.x.x"
+  }
+}
