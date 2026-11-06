@@ -83,7 +83,7 @@ export default function AjukanPeminjaman() {
       <Sidebar />
       <main className="flex-1 p-8 overflow-y-auto">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-indigo-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
             Request Form
           </div>
           <h1 className="text-2xl font-extrabold text-slate-950 tracking-tight">Formulir Pengajuan Peminjaman</h1>
@@ -91,14 +91,14 @@ export default function AjukanPeminjaman() {
         </div>
 
         {error && (
-          <div className="mb-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl max-w-xl flex items-center justify-between">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl max-w-xl flex items-center justify-between">
             <span>{error}</span>
-            <button onClick={() => setError('')} className="text-rose-500 hover:text-rose-700 font-bold">✕</button>
+            <button onClick={() => setError('')} className="text-slate-500 hover:text-slate-700 font-bold">✕</button>
           </div>
         )}
 
         {success && (
-          <div className="mb-4 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-2xl max-w-xl">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl max-w-xl">
             {success}
           </div>
         )}
@@ -110,14 +110,14 @@ export default function AjukanPeminjaman() {
               {loadingTools ? (
                 <div className="text-xs text-slate-400 py-2">Memuat daftar alat yang tersedia...</div>
               ) : tools.length === 0 ? (
-                <div className="text-xs text-amber-600 bg-amber-50 p-3.5 rounded-xl border border-amber-200">
+                <div className="text-xs text-slate-600 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
                   Saat ini tidak ada alat yang memiliki stok tersedia untuk dipinjam.
                 </div>
               ) : (
                 <select
                   value={formData.tool_id}
                   onChange={(e) => setFormData({ ...formData, tool_id: e.target.value })}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600/20"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600/20"
                   required
                 >
                   {tools.map((alat) => (
@@ -137,7 +137,7 @@ export default function AjukanPeminjaman() {
                   required
                   value={formData.loan_date}
                   onChange={(e) => setFormData({ ...formData, loan_date: e.target.value })}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                 />
               </div>
 
@@ -148,7 +148,7 @@ export default function AjukanPeminjaman() {
                   required
                   value={formData.return_date}
                   onChange={(e) => setFormData({ ...formData, return_date: e.target.value })}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                 />
               </div>
             </div>
@@ -161,14 +161,14 @@ export default function AjukanPeminjaman() {
                 value={formData.reason}
                 placeholder="Contoh: Praktik ujian kejuruan multimedia / liputan kegiatan OSIS..."
                 onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
               ></textarea>
             </div>
 
             <button
               type="submit"
               disabled={submitting || loadingTools || tools.length === 0}
-              className="w-full py-3 bg-slate-950 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md transition-all disabled:opacity-50 cursor-pointer border border-slate-800 mt-2"
+              className="w-full py-3 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-xs font-bold shadow-md transition-all disabled:opacity-50 cursor-pointer border border-slate-800 mt-2"
             >
               {submitting ? 'Mengirim Pengajuan...' : 'Kirim Pengajuan Peminjaman'}
             </button>

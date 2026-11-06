@@ -52,26 +52,26 @@ export default function Dashboard() {
     switch (user?.role) {
       case 'admin':
         return [
-          { title: 'Total Inventaris Alat', value: totalTools, icon: '📦', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-          { title: 'Alat Tersedia', value: availableTools, icon: '✅', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
-          { title: 'Sedang Dipinjam', value: borrowedTools, icon: '⏳', color: 'text-amber-600 bg-amber-50 border-amber-100' },
-          { title: 'Menunggu Persetujuan', value: pendingLoans, icon: '🔔', color: 'text-rose-600 bg-rose-50 border-rose-100' },
-          { title: 'Total Pengguna', value: totalUsersCount, icon: '👥', color: 'text-purple-600 bg-purple-50 border-purple-100' },
-          { title: 'Peminjaman Selesai', value: completedLoans, icon: '📋', color: 'text-teal-600 bg-teal-50 border-teal-100' },
+          { title: 'Total Inventaris Alat', value: totalTools, icon: '📦', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Alat Tersedia', value: availableTools, icon: '✅', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Sedang Dipinjam', value: borrowedTools, icon: '⏳', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Menunggu Persetujuan', value: pendingLoans, icon: '🔔', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Total Pengguna', value: totalUsersCount, icon: '👥', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Peminjaman Selesai', value: completedLoans, icon: '📋', color: 'text-slate-600 bg-slate-50 border-slate-100' },
         ];
       case 'petugas':
         return [
-          { title: 'Total Inventaris', value: totalTools, icon: '📦', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-          { title: 'Alat Siap Dipinjam', value: availableTools, icon: '✅', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
-          { title: 'Perlu Verifikasi', value: pendingLoans, icon: '🔔', color: 'text-rose-600 bg-rose-50 border-rose-100' },
-          { title: 'Sedang Dipinjam', value: activeLoans, icon: '⏳', color: 'text-amber-600 bg-amber-50 border-amber-100' },
+          { title: 'Total Inventaris', value: totalTools, icon: '📦', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Alat Siap Dipinjam', value: availableTools, icon: '✅', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Perlu Verifikasi', value: pendingLoans, icon: '🔔', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Sedang Dipinjam', value: activeLoans, icon: '⏳', color: 'text-slate-600 bg-slate-50 border-slate-100' },
         ];
       default: // peminjam
         return [
-          { title: 'Katalog Alat Tersedia', value: availableTools, icon: '📦', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-          { title: 'Pinjaman Aktif Saya', value: activeLoans, icon: '⏳', color: 'text-amber-600 bg-amber-50 border-amber-100' },
-          { title: 'Menunggu Persetujuan', value: pendingLoans, icon: '🔔', color: 'text-blue-600 bg-blue-50 border-blue-100' },
-          { title: 'Riwayat Selesai', value: completedLoans, icon: '✅', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
+          { title: 'Katalog Alat Tersedia', value: availableTools, icon: '📦', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Pinjaman Aktif Saya', value: activeLoans, icon: '⏳', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Menunggu Persetujuan', value: pendingLoans, icon: '🔔', color: 'text-slate-600 bg-slate-50 border-slate-100' },
+          { title: 'Riwayat Selesai', value: completedLoans, icon: '✅', color: 'text-slate-600 bg-slate-50 border-slate-100' },
         ];
     }
   };
@@ -98,7 +98,7 @@ export default function Dashboard() {
         {/* Topbar Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-indigo-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
               System Overview
             </div>
             <h1 className="text-2xl font-extrabold text-slate-950 capitalize tracking-tight">
@@ -120,7 +120,7 @@ export default function Dashboard() {
           {getCards().map((card, idx) => (
             <div
               key={idx}
-              className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group"
+              className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md transition-all flex items-center justify-between group"
             >
               <div>
                 <span className="text-xs font-semibold text-slate-500 block mb-1">{card.title}</span>
@@ -148,9 +148,9 @@ export default function Dashboard() {
                 placeholder="Cari kode atau nama alat..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full sm:w-64 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600/20 transition-all"
+                className="w-full sm:w-64 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600/20 transition-all"
               />
-              <span className="text-xs font-bold px-3 py-1.5 bg-slate-950 text-indigo-300 rounded-xl whitespace-nowrap border border-slate-800">
+              <span className="text-xs font-bold px-3 py-1.5 bg-slate-950 text-slate-300 rounded-xl whitespace-nowrap border border-slate-800">
                 {filteredTools.length} Alat
               </span>
             </div>
@@ -162,7 +162,7 @@ export default function Dashboard() {
                 <tr className="bg-slate-950 text-slate-200 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-800">
                   <th className="py-3 px-6 w-16">No</th>
                   <th className="py-3 px-6">Kode Alat</th>
-                  <th className="py-3 px-6">Nama Alat</th>
+                  <th className="py-3 px-6 min-w-[14rem]">Nama Alat</th>
                   <th className="py-3 px-6">Kategori</th>
                   <th className="py-3 px-6">Stok</th>
                   <th className="py-3 px-6">Status</th>
@@ -186,7 +186,7 @@ export default function Dashboard() {
                     <tr key={item.id || index} className="hover:bg-slate-50/80 transition-colors">
                       <td className="py-3.5 px-6 font-medium text-slate-400">{index + 1}</td>
                       <td className="py-3.5 px-6">
-                        <span className="font-mono text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded">
+                        <span className="font-mono text-xs font-bold text-slate-700 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">
                           {item.code || `ALT-${item.id}`}
                         </span>
                       </td>
@@ -197,10 +197,10 @@ export default function Dashboard() {
                         <span
                           className={`inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${
                             item.status === 'Tersedia' && item.stock > 0
-                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                              ? 'bg-slate-50 text-slate-700 border-slate-200'
                               : item.status === 'Perbaikan'
-                              ? 'bg-rose-50 text-rose-700 border-rose-200'
-                              : 'bg-amber-50 text-amber-700 border-amber-200'
+                              ? 'bg-slate-50 text-slate-700 border-slate-200'
+                              : 'bg-slate-50 text-slate-700 border-slate-200'
                           }`}
                         >
                           {item.stock <= 0 && item.status === 'Tersedia' ? 'Habis' : item.status || 'Tersedia'}

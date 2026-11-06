@@ -39,7 +39,7 @@ export default function PengembalianAdmin() {
       <main className="flex-1 p-8 overflow-y-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-indigo-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
               Return Archive
             </div>
             <h1 className="text-2xl font-extrabold text-slate-950 tracking-tight">Riwayat Pengembalian</h1>
@@ -54,9 +54,9 @@ export default function PengembalianAdmin() {
         </div>
 
         {error && (
-          <div className="mb-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl flex items-center justify-between">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl flex items-center justify-between">
             <span>{error}</span>
-            <button onClick={() => setError('')} className="text-rose-500 hover:text-rose-700 font-bold">✕</button>
+            <button onClick={() => setError('')} className="text-slate-500 hover:text-slate-700 font-bold">✕</button>
           </div>
         )}
 
@@ -66,9 +66,9 @@ export default function PengembalianAdmin() {
             placeholder="Cari nama peminjam, nama alat, atau kode..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600 w-full sm:w-80"
+            className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600 w-full sm:w-80"
           />
-          <span className="text-xs font-bold px-3 py-1 bg-slate-950 text-indigo-300 rounded-xl border border-slate-800">
+          <span className="text-xs font-bold px-3 py-1 bg-slate-950 text-slate-300 rounded-xl border border-slate-800">
             Total Selesai: {filteredList.length} Alat
           </span>
         </div>
@@ -79,7 +79,7 @@ export default function PengembalianAdmin() {
               <tr className="bg-slate-950 text-slate-200 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-800">
                 <th className="py-3 px-6 w-16">No</th>
                 <th className="py-3 px-6">Peminjam</th>
-                <th className="py-3 px-6">Nama Alat</th>
+                <th className="py-3 px-6 min-w-[14rem]">Nama Alat</th>
                 <th className="py-3 px-6">Tanggal Pinjam</th>
                 <th className="py-3 px-6">Tanggal Pengembalian</th>
                 <th className="py-3 px-6">Status</th>
@@ -109,7 +109,7 @@ export default function PengembalianAdmin() {
                     <td className="py-3.5 px-6">
                       <div className="font-bold text-slate-900">{item.tool_name || `Alat #${item.tool_id}`}</div>
                       {item.tool_code && (
-                        <span className="inline-block mt-0.5 text-[10px] text-indigo-700 bg-indigo-50 border border-indigo-100 px-1.5 py-0.2 rounded font-mono font-medium">
+                        <span className="inline-block mt-0.5 text-[10px] text-slate-700 bg-slate-50 border border-slate-100 px-1.5 py-0.2 rounded font-mono font-medium">
                           {item.tool_code}
                         </span>
                       )}
@@ -121,7 +121,7 @@ export default function PengembalianAdmin() {
                       {item.return_date ? new Date(item.return_date).toLocaleDateString('id-ID') : '-'}
                     </td>
                     <td className="py-3.5 px-6">
-                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-50 text-slate-700 border border-slate-200">
                         {item.status}
                       </span>
                     </td>

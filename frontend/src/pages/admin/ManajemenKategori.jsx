@@ -103,7 +103,7 @@ export default function ManajemenKategori() {
       <main className="flex-1 p-8 overflow-y-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-indigo-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
               Taxonomy
             </div>
             <h1 className="text-2xl font-extrabold text-slate-950 tracking-tight">Manajemen Kategori</h1>
@@ -118,16 +118,16 @@ export default function ManajemenKategori() {
         </div>
 
         {error && (
-          <div className="mb-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl flex items-center justify-between">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl flex items-center justify-between">
             <span>{error}</span>
-            <button onClick={() => setError('')} className="text-rose-500 hover:text-rose-700 font-bold">✕</button>
+            <button onClick={() => setError('')} className="text-slate-500 hover:text-slate-700 font-bold">✕</button>
           </div>
         )}
 
         {success && (
-          <div className="mb-4 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-2xl flex items-center justify-between">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl flex items-center justify-between">
             <span>{success}</span>
-            <button onClick={() => setSuccess('')} className="text-emerald-500 hover:text-emerald-700 font-bold">✕</button>
+            <button onClick={() => setSuccess('')} className="text-slate-500 hover:text-slate-700 font-bold">✕</button>
           </div>
         )}
 
@@ -144,13 +144,13 @@ export default function ManajemenKategori() {
                   placeholder="Contoh: Multimedia & Studio"
                   value={newCategoryName}
                   onChange={(e) => setNewCategoryName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                 />
               </div>
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-2.5 bg-slate-950 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition-all disabled:opacity-50 cursor-pointer tracking-wide"
+                className="w-full py-2.5 bg-slate-950 hover:bg-slate-700 text-white text-xs font-bold rounded-xl shadow-xs transition-all disabled:opacity-50 cursor-pointer tracking-wide"
               >
                 {submitting ? 'Menyimpan...' : 'Simpan Kategori'}
               </button>
@@ -165,9 +165,9 @@ export default function ManajemenKategori() {
                 placeholder="Cari kategori..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600 w-64"
+                className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600 w-64"
               />
-              <span className="text-xs font-bold px-3 py-1 bg-slate-950 text-indigo-300 rounded-xl border border-slate-800">
+              <span className="text-xs font-bold px-3 py-1 bg-slate-950 text-slate-300 rounded-xl border border-slate-800">
                 {filteredCategories.length} Kategori
               </span>
             </div>
@@ -204,13 +204,13 @@ export default function ManajemenKategori() {
                         <div className="flex justify-center gap-1.5">
                           <button
                             onClick={() => openEdit(item)}
-                            className="px-2.5 py-1 bg-white border border-indigo-300 text-indigo-700 hover:bg-indigo-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
+                            className="px-2.5 py-1 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => handleDeleteCategory(item.id, item.name)}
-                            className="px-2.5 py-1 bg-white border border-rose-300 text-rose-600 hover:bg-rose-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
+                            className="px-2.5 py-1 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
                           >
                             Hapus
                           </button>
@@ -248,7 +248,7 @@ export default function ManajemenKategori() {
                     onChange={(e) =>
                       setEditingCategory({ ...editingCategory, name: e.target.value })
                     }
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   />
                 </div>
 
@@ -263,7 +263,7 @@ export default function ManajemenKategori() {
                   <button
                     type="submit"
                     disabled={updating}
-                    className="flex-1 py-2.5 bg-slate-950 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-colors disabled:opacity-50 cursor-pointer"
+                    className="flex-1 py-2.5 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-colors disabled:opacity-50 cursor-pointer"
                   >
                     {updating ? 'Menyimpan...' : 'Simpan'}
                   </button>

@@ -142,7 +142,7 @@ export default function ManajemenAlat() {
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-indigo-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
               Inventory Control
             </div>
             <h1 className="text-2xl font-extrabold text-slate-950 tracking-tight">Manajemen Alat</h1>
@@ -150,7 +150,7 @@ export default function ManajemenAlat() {
           </div>
           <button
             onClick={openAddModal}
-            className="px-4 py-2.5 bg-slate-950 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer border border-slate-800 hover:border-indigo-600"
+            className="px-4 py-2.5 bg-slate-950 hover:bg-slate-700 text-white text-xs font-bold rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer border border-slate-800 hover:border-slate-600"
           >
             <span>+</span>
             <span>Tambah Alat Baru</span>
@@ -159,15 +159,15 @@ export default function ManajemenAlat() {
 
         {/* Alerts */}
         {error && (
-          <div className="mb-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl flex items-center justify-between">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl flex items-center justify-between">
             <span>{error}</span>
-            <button onClick={() => setError('')} className="text-rose-500 hover:text-rose-700 font-bold">✕</button>
+            <button onClick={() => setError('')} className="text-slate-500 hover:text-slate-700 font-bold">✕</button>
           </div>
         )}
         {success && (
-          <div className="mb-4 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-2xl flex items-center justify-between">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl flex items-center justify-between">
             <span>{success}</span>
-            <button onClick={() => setSuccess('')} className="text-emerald-500 hover:text-emerald-700 font-bold">✕</button>
+            <button onClick={() => setSuccess('')} className="text-slate-500 hover:text-slate-700 font-bold">✕</button>
           </div>
         )}
 
@@ -179,12 +179,12 @@ export default function ManajemenAlat() {
               placeholder="Cari kode atau nama alat..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600 w-full sm:w-72"
+              className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600 w-full sm:w-72"
             />
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+              className="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
             >
               <option value="">Semua Kategori</option>
               {kategoriList.map((kat) => (
@@ -209,7 +209,7 @@ export default function ManajemenAlat() {
               <tr className="bg-slate-950 text-slate-200 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-800">
                 <th className="py-3 px-6 w-16">No</th>
                 <th className="py-3 px-6">Kode Alat</th>
-                <th className="py-3 px-6">Nama Alat</th>
+                <th className="py-3 px-6 min-w-[14rem]">Nama Alat</th>
                 <th className="py-3 px-6">Kategori</th>
                 <th className="py-3 px-6">Stok</th>
                 <th className="py-3 px-6">Status</th>
@@ -234,7 +234,7 @@ export default function ManajemenAlat() {
                   <tr key={item.id} className="hover:bg-slate-50/80 transition-colors">
                     <td className="py-3.5 px-6 font-medium text-slate-400">{index + 1}</td>
                     <td className="py-3.5 px-6">
-                      <span className="font-mono text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded">
+                      <span className="font-mono text-xs font-bold text-slate-700 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">
                         {item.code}
                       </span>
                     </td>
@@ -245,10 +245,10 @@ export default function ManajemenAlat() {
                       <span
                         className={`inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${
                           item.status === 'Tersedia' && item.stock > 0
-                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                            ? 'bg-slate-50 text-slate-700 border-slate-200'
                             : item.status === 'Perbaikan'
-                            ? 'bg-rose-50 text-rose-700 border-rose-200'
-                            : 'bg-amber-50 text-amber-700 border-amber-200'
+                            ? 'bg-slate-50 text-slate-700 border-slate-200'
+                            : 'bg-slate-50 text-slate-700 border-slate-200'
                         }`}
                       >
                         {item.stock <= 0 && item.status === 'Tersedia' ? 'Habis' : item.status}
@@ -258,13 +258,13 @@ export default function ManajemenAlat() {
                       <div className="flex justify-center gap-1.5">
                         <button
                           onClick={() => openEditModal(item)}
-                          className="px-2.5 py-1 bg-white border border-indigo-300 text-indigo-700 hover:bg-indigo-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
+                          className="px-2.5 py-1 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteTool(item.id, item.name)}
-                          className="px-2.5 py-1 bg-white border border-rose-300 text-rose-600 hover:bg-rose-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
+                          className="px-2.5 py-1 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-xs font-bold transition-colors cursor-pointer"
                         >
                           Hapus
                         </button>
@@ -300,7 +300,7 @@ export default function ManajemenAlat() {
                     value={formData.code}
                     placeholder="Contoh: ALT-014"
                     onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   />
                 </div>
 
@@ -312,7 +312,7 @@ export default function ManajemenAlat() {
                     value={formData.name}
                     placeholder="Contoh: Sony Alpha A7 III"
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   />
                 </div>
 
@@ -321,7 +321,7 @@ export default function ManajemenAlat() {
                   <select
                     value={formData.category_id}
                     onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   >
                     {kategoriList.map((kat) => (
                       <option key={kat.id} value={kat.id}>
@@ -340,7 +340,7 @@ export default function ManajemenAlat() {
                       required
                       value={formData.stock}
                       onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) || 0 })}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                     />
                   </div>
                   <div>
@@ -348,7 +348,7 @@ export default function ManajemenAlat() {
                     <select
                       value={formData.status}
                       onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                     >
                       <option value="Tersedia">Tersedia</option>
                       <option value="Dipinjam">Dipinjam</option>
@@ -368,7 +368,7 @@ export default function ManajemenAlat() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 py-2.5 bg-slate-950 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-colors disabled:opacity-50 cursor-pointer"
+                    className="flex-1 py-2.5 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-colors disabled:opacity-50 cursor-pointer"
                   >
                     {submitting ? 'Menyimpan...' : 'Simpan Alat'}
                   </button>
@@ -400,7 +400,7 @@ export default function ManajemenAlat() {
                     required
                     value={formData.code}
                     onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   />
                 </div>
 
@@ -411,7 +411,7 @@ export default function ManajemenAlat() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   />
                 </div>
 
@@ -420,7 +420,7 @@ export default function ManajemenAlat() {
                   <select
                     value={formData.category_id}
                     onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                   >
                     {kategoriList.map((kat) => (
                       <option key={kat.id} value={kat.id}>
@@ -439,7 +439,7 @@ export default function ManajemenAlat() {
                       required
                       value={formData.stock}
                       onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) || 0 })}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                     />
                   </div>
                   <div>
@@ -447,7 +447,7 @@ export default function ManajemenAlat() {
                     <select
                       value={formData.status}
                       onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
                     >
                       <option value="Tersedia">Tersedia</option>
                       <option value="Dipinjam">Dipinjam</option>
@@ -467,7 +467,7 @@ export default function ManajemenAlat() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 py-2.5 bg-slate-950 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-colors disabled:opacity-50 cursor-pointer"
+                    className="flex-1 py-2.5 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-colors disabled:opacity-50 cursor-pointer"
                   >
                     {submitting ? 'Menyimpan...' : 'Simpan Perubahan'}
                   </button>

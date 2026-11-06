@@ -35,16 +35,16 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-950 px-4 py-12 relative overflow-hidden font-sans">
       {/* Subtle Futuristic Glow Backdrop */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-slate-600/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-slate-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-100 shadow-2xl shadow-indigo-950/40 w-full max-w-md relative z-10">
+      <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-100 shadow-2xl shadow-slate-950/40 w-full max-w-md relative z-10">
         {/* Header Branding with proper vertical flex stacking and clean spacing */}
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-indigo-600/30 mb-4 flex-shrink-0">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-600 to-slate-700 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-slate-600/30 mb-4 flex-shrink-0">
             📦
           </div>
-          <div className="px-3.5 py-1 bg-slate-950 text-indigo-300 text-[10px] font-bold uppercase tracking-widest rounded-full border border-slate-800 mb-3.5 shadow-xs">
+          <div className="px-3.5 py-1 bg-slate-950 text-slate-300 text-[10px] font-bold uppercase tracking-widest rounded-full border border-slate-800 mb-3.5 shadow-xs">
             Security Access
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight leading-snug">
@@ -56,7 +56,7 @@ export default function Login() {
         </div>
 
         {error && (
-          <div className="mb-5 p-3.5 bg-rose-50 border border-rose-200/80 text-rose-700 text-xs rounded-2xl flex items-start gap-2.5">
+          <div className="mb-5 p-3.5 bg-slate-50 border border-slate-200/80 text-slate-700 text-xs rounded-2xl flex items-start gap-2.5">
             <span className="text-sm">⚠️</span>
             <div className="flex-1 font-medium leading-relaxed">{error}</div>
           </div>
@@ -72,7 +72,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="nama@aplikasi.com"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/15 transition-all"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-slate-600 focus:ring-2 focus:ring-slate-600/15 transition-all"
               required
             />
           </div>
@@ -88,7 +88,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/15 transition-all"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-slate-600 focus:ring-2 focus:ring-slate-600/15 transition-all"
               required
             />
           </div>
@@ -96,7 +96,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-slate-950 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md hover:shadow-indigo-600/20 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer mt-4 tracking-wide"
+            className="w-full py-3 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-all shadow-md hover:shadow-slate-600/20 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer mt-4 tracking-wide"
           >
             {loading ? (
               <span className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export default function Login() {
         <div className="mt-8 pt-5 border-t border-slate-100 text-center">
           <p className="text-xs text-slate-500">
             Belum memiliki akun?{' '}
-            <Link to="/register" className="font-bold text-indigo-600 hover:text-indigo-800 hover:underline">
+            <Link to="/register" className="font-bold text-slate-600 hover:text-slate-800 hover:underline">
               Daftar Akun Baru
             </Link>
           </p>

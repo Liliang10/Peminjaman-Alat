@@ -79,7 +79,7 @@ export default function CetakLaporan() {
       <main className="flex-1 p-8 overflow-y-auto print:p-0">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 print:hidden">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-indigo-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider uppercase mb-1.5 border border-slate-800">
               Reporting Engine
             </div>
             <h1 className="text-2xl font-extrabold text-slate-950 tracking-tight">Cetak Laporan Peminjaman</h1>
@@ -88,7 +88,7 @@ export default function CetakLaporan() {
           <div className="flex gap-2.5">
             <button
               onClick={() => window.print()}
-              className="px-4 py-2.5 bg-slate-950 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-2 cursor-pointer border border-slate-800 transition-all"
+              className="px-4 py-2.5 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-2 cursor-pointer border border-slate-800 transition-all"
             >
               <span>🖨️</span>
               <span>Cetak Dokumen / PDF</span>
@@ -104,7 +104,7 @@ export default function CetakLaporan() {
         </div>
 
         {error && (
-          <div className="mb-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl print:hidden">
+          <div className="mb-4 p-3.5 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl print:hidden">
             {error}
           </div>
         )}
@@ -119,7 +119,7 @@ export default function CetakLaporan() {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
               />
             </div>
             <div>
@@ -128,7 +128,7 @@ export default function CetakLaporan() {
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
               />
             </div>
             <div>
@@ -136,7 +136,7 @@ export default function CetakLaporan() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-slate-600"
               >
                 <option value="">Semua Status</option>
                 <option value="Selesai">Selesai (Dikembalikan)</option>
@@ -152,7 +152,7 @@ export default function CetakLaporan() {
         {/* Report Preview Document */}
         <div className="bg-white rounded-2xl border border-slate-200/90 p-8 shadow-xs print:border-none print:shadow-none print:p-0">
           <div className="text-center border-b border-slate-200 pb-5 mb-6">
-            <div className="inline-block px-3 py-1 bg-slate-950 text-indigo-300 text-[10px] font-bold uppercase tracking-widest rounded-full mb-2">
+            <div className="inline-block px-3 py-1 bg-slate-950 text-slate-300 text-[10px] font-bold uppercase tracking-widest rounded-full mb-2">
               Official Report
             </div>
             <h2 className="text-xl font-extrabold text-slate-950 uppercase tracking-wide">
@@ -171,7 +171,7 @@ export default function CetakLaporan() {
                 <tr className="bg-slate-950 text-slate-200 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-800">
                   <th className="py-2.5 px-4 w-12">No</th>
                   <th className="py-2.5 px-4">Peminjam</th>
-                  <th className="py-2.5 px-4">Nama Alat</th>
+                  <th className="py-2.5 px-4 min-w-[14rem]">Nama Alat</th>
                   <th className="py-2.5 px-4">Tanggal Pinjam</th>
                   <th className="py-2.5 px-4">Tanggal Pengembalian</th>
                   <th className="py-2.5 px-4">Status</th>
@@ -200,7 +200,7 @@ export default function CetakLaporan() {
                       <td className="py-2.5 px-4 text-slate-800 font-semibold">
                         {item.tool_name || `Alat #${item.tool_id}`}
                         {item.tool_code && (
-                          <span className="ml-1.5 text-[10px] text-indigo-700 bg-indigo-50 border border-indigo-100 px-1 py-0.2 rounded font-mono">
+                          <span className="ml-1.5 text-[10px] text-slate-700 bg-slate-50 border border-slate-100 px-1 py-0.2 rounded font-mono">
                             {item.tool_code}
                           </span>
                         )}
