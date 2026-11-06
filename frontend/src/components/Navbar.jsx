@@ -4,14 +4,14 @@ export default function Navbar({ title = 'Dashboard' }) {
   const { user } = useAuth();
 
   return (
-    <header className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold text-gray-800">{title}</h1>
+    <header className="bg-white border-b border-slate-200/80 px-8 py-4 flex justify-between items-center">
+      <h1 className="text-xl font-bold text-slate-800 tracking-tight">{title}</h1>
       <div className="flex items-center gap-3">
         <div className="text-right">
-          <p className="text-sm font-semibold text-gray-900">{user?.name || 'User'}</p>
-          <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
+          <p className="text-sm font-semibold text-slate-800">{user?.name || 'User'}</p>
+          <p className="text-xs text-slate-500 capitalize">{user?.role}</p>
         </div>
-        <div className="w-9 h-9 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-700">
+        <div className="w-9 h-9 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-center font-bold text-indigo-700">
           {user?.name?.charAt(0) || 'U'}
         </div>
       </div>

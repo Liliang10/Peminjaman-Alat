@@ -1,6 +1,7 @@
 import db from '../config/db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { logActivity } from '../utils/logger.js';
 
 export const register = async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -15,10 +16,12 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const userRole = role || 'peminjam';
 
-    await db.query(
+    const [result] = await db.query(
       'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
       [name, email, hashedPassword, userRole]
     );
+
+    await logActivity(result.insertId, `Pengguna baru mendaftar akun: ${name} (${userRole})`);
 
     return res.status(201).json({ message: 'Registrasi berhasil! Silakan login.' });
   } catch (error) {
@@ -28,19 +31,14 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  console.log('>>> [LOGIN ATTEMPT] Body received:', req.body);
-
   try {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      console.log('>>> [LOGIN ERROR] Email or password missing');
       return res.status(400).json({ message: 'Email dan password harus diisi!' });
     }
 
-    console.log('>>> [LOGIN DB] Querying database for email:', email);
     const [users] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
-    console.log('>>> [LOGIN DB] Query result count:', users.length);
 
     if (users.length === 0) {
       return res.status(400).json({ message: 'Email atau password salah!' });
@@ -48,22 +46,20 @@ export const login = async (req, res) => {
 
     const user = users[0];
 
-    console.log('>>> [LOGIN BCRYPT] Comparing password...');
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log('>>> [LOGIN BCRYPT] Match result:', isMatch);
 
     if (!isMatch) {
       return res.status(400).json({ message: 'Email atau password salah!' });
     }
 
-    console.log('>>> [LOGIN JWT] Signing token...');
     const token = jwt.sign(
       { id: user.id, role: user.role, name: user.name },
       process.env.JWT_SECRET || 'secretkey',
       { expiresIn: '1d' }
     );
 
-    console.log('>>> [LOGIN SUCCESS] Sending response to client');
+    await logActivity(user.id, `Pengguna "${user.name}" (${user.role}) berhasil masuk ke sistem.`);
+
     return res.status(200).json({
       message: 'Login berhasil!',
       token,
@@ -75,7 +71,7 @@ export const login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('>>> [LOGIN CATCH ERROR]:', error);
+    console.error('Login Error:', error);
     return res.status(500).json({ message: 'Server Error: ' + error.message });
   }
 };

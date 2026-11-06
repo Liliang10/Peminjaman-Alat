@@ -22,10 +22,13 @@ import DaftarAlatPeminjam from './pages/peminjam/DaftarAlatPeminjam';
 import AjukanPeminjaman from './pages/peminjam/AjukanPeminjaman';
 import PeminjamanSaya from './pages/peminjam/PeminjamanSaya';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/dashboard" replace />;
   }
   return children;
 };
@@ -38,7 +41,8 @@ export default function App() {
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+
+          {/* Accessible to all authenticated users */}
           <Route
             path="/dashboard"
             element={
@@ -48,23 +52,107 @@ export default function App() {
             }
           />
 
-          {/* Admin Routes */}
-          <Route path="/admin/alat" element={<ProtectedRoute><ManajemenAlat /></ProtectedRoute>} />
-          <Route path="/admin/kategori" element={<ProtectedRoute><ManajemenKategori /></ProtectedRoute>} />
-          <Route path="/admin/user" element={<ProtectedRoute><ManajemenUser /></ProtectedRoute>} />
-          <Route path="/admin/peminjaman" element={<ProtectedRoute><DataPeminjaman /></ProtectedRoute>} />
-          <Route path="/admin/pengembalian" element={<ProtectedRoute><PengembalianAdmin /></ProtectedRoute>} />
-          <Route path="/admin/log" element={<ProtectedRoute><LogAktivitas /></ProtectedRoute>} />
+          {/* Admin Exclusive Routes */}
+          <Route
+            path="/admin/alat"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <ManajemenAlat />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/kategori"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <ManajemenKategori />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/user"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <ManajemenUser />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/peminjaman"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <DataPeminjaman />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/pengembalian"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <PengembalianAdmin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/log"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <LogAktivitas />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Petugas Routes */}
-          <Route path="/petugas/peminjaman" element={<ProtectedRoute><PeminjamanPetugas /></ProtectedRoute>} />
-          <Route path="/petugas/pengembalian" element={<ProtectedRoute><PengembalianPetugas /></ProtectedRoute>} />
-          <Route path="/petugas/laporan" element={<ProtectedRoute><CetakLaporan /></ProtectedRoute>} />
+          {/* Petugas Exclusive Routes */}
+          <Route
+            path="/petugas/peminjaman"
+            element={
+              <ProtectedRoute allowedRoles={['petugas']}>
+                <PeminjamanPetugas />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/petugas/pengembalian"
+            element={
+              <ProtectedRoute allowedRoles={['petugas']}>
+                <PengembalianPetugas />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/petugas/laporan"
+            element={
+              <ProtectedRoute allowedRoles={['petugas']}>
+                <CetakLaporan />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Peminjam Routes */}
-          <Route path="/peminjam/alat" element={<ProtectedRoute><DaftarAlatPeminjam /></ProtectedRoute>} />
-          <Route path="/peminjam/ajukan" element={<ProtectedRoute><AjukanPeminjaman /></ProtectedRoute>} />
-          <Route path="/peminjam/peminjaman-saya" element={<ProtectedRoute><PeminjamanSaya /></ProtectedRoute>} />
+          {/* Peminjam Exclusive Routes */}
+          <Route
+            path="/peminjam/alat"
+            element={
+              <ProtectedRoute allowedRoles={['peminjam']}>
+                <DaftarAlatPeminjam />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/peminjam/ajukan"
+            element={
+              <ProtectedRoute allowedRoles={['peminjam']}>
+                <AjukanPeminjaman />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/peminjam/peminjaman-saya"
+            element={
+              <ProtectedRoute allowedRoles={['peminjam']}>
+                <PeminjamanSaya />
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

@@ -33,17 +33,8 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
-  const switchRole = (newRole) => {
-    setUser((prev) => {
-      if (!prev) return prev;
-      const updated = { ...prev, role: newRole };
-      localStorage.setItem('user', JSON.stringify(updated));
-      return updated;
-    });
-  };
-
   return (
-    <AuthContext.Provider value={{ user, login, logout, switchRole, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

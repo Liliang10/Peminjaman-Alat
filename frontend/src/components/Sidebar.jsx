@@ -2,7 +2,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Sidebar() {
-  const { user, logout, switchRole } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,8 +18,8 @@ export default function Sidebar() {
     ],
     petugas: [
       { name: 'Dashboard', path: '/dashboard', icon: '📊' },
-      { name: 'Peminjaman', path: '/petugas/peminjaman', icon: '📑' },
-      { name: 'Pengembalian', path: '/petugas/pengembalian', icon: '↩️' },
+      { name: 'Persetujuan Peminjaman', path: '/petugas/peminjaman', icon: '📑' },
+      { name: 'Proses Pengembalian', path: '/petugas/pengembalian', icon: '↩️' },
       { name: 'Cetak Laporan', path: '/petugas/laporan', icon: '🖨️' },
     ],
     peminjam: [
@@ -33,90 +33,88 @@ export default function Sidebar() {
   const currentRole = user?.role || 'peminjam';
   const menuItems = menuByRole[currentRole] || [];
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
+
+  const getRoleBadgeStyle = (role) => {
+    switch (role) {
+      case 'admin':
+        return 'bg-purple-950/80 text-purple-300 border-purple-700/60';
+      case 'petugas':
+        return 'bg-blue-950/80 text-blue-300 border-blue-700/60';
+      default:
+        return 'bg-indigo-950/80 text-indigo-300 border-indigo-700/60';
+    }
+  };
+
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 h-screen sticky top-0 flex flex-col justify-between p-5 shadow-sm">
+    <aside className="w-64 bg-slate-950 text-slate-300 border-r border-slate-800/80 h-screen sticky top-0 flex flex-col justify-between p-5 shadow-2xl select-none flex-shrink-0 z-20">
       {/* Bagian Atas: Logo & List Menu */}
       <div className="flex-1 flex flex-col min-h-0">
         <div className="mb-6 flex-shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center font-bold text-base shadow-lg shadow-indigo-600/30">
               📦
             </div>
             <div>
-              <h2 className="text-base font-bold text-slate-800 leading-tight">Peminjaman Alat</h2>
-              <p className="text-[11px] text-slate-400">SMK / Kampus App</p>
+              <h2 className="text-sm font-extrabold text-white tracking-tight leading-tight">
+                Peminjaman Alat
+              </h2>
+              <p className="text-[10px] text-slate-400 font-medium">Smart Inventory System</p>
             </div>
           </div>
-          <div className="mt-4 p-2.5 bg-slate-50 border border-slate-200/80 rounded-xl">
-            <div className="text-xs font-semibold text-slate-800 truncate">{user?.name || 'Pengguna'}</div>
-            <div className="text-[11px] text-slate-500 truncate">{user?.email || '-'}</div>
-            <div className="mt-1">
-              <span className="inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded bg-indigo-100 text-indigo-700">
+
+          {/* User Profile Card */}
+          <div className="mt-4 p-3 bg-slate-900/90 border border-slate-800 rounded-2xl shadow-inner">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-bold text-white truncate">{user?.name || 'Pengguna'}</span>
+              <span
+                className={`px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-widest rounded-md border ${getRoleBadgeStyle(
+                  currentRole
+                )}`}
+              >
                 {currentRole}
               </span>
             </div>
+            <div className="text-[11px] text-slate-400 truncate mt-0.5">{user?.email || '-'}</div>
           </div>
         </div>
 
         {/* Navigasi Menu */}
-        <nav className="space-y-1 overflow-y-auto pr-1">
+        <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2 px-1">
+          Menu Navigasi
+        </div>
+        <nav className="space-y-1 overflow-y-auto pr-1 flex-1">
           {menuItems.map((item, index) => {
             const isActive = location.pathname === item.path;
             return (
               <button
                 key={index}
                 onClick={() => navigate(item.path)}
-                className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-all flex items-center gap-2.5 ${
+                className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center gap-3 cursor-pointer ${
                   isActive
-                    ? 'bg-indigo-50 text-indigo-700 font-semibold shadow-xs'
-                    : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900'
+                    ? 'bg-indigo-600 text-white font-bold shadow-lg shadow-indigo-600/25 border border-indigo-500/40'
+                    : 'text-slate-400 hover:bg-slate-900 hover:text-white'
                 }`}
               >
-                <span>{item.icon}</span>
-                <span>{item.name}</span>
+                <span className="text-sm">{item.icon}</span>
+                <span className="tracking-wide">{item.name}</span>
               </button>
             );
           })}
         </nav>
       </div>
 
-      {/* Bagian Bawah: Switch Role & Logout */}
-      <div className="border-t border-slate-200 pt-3 mt-3 space-y-2.5 flex-shrink-0">
-        <div>
-          <label className="block text-[10px] uppercase text-slate-400 font-bold mb-1.5 tracking-wider">
-            ⚡ Ganti Role (Demo)
-          </label>
-          <div className="grid grid-cols-3 gap-1">
-            {['admin', 'petugas', 'peminjam'].map((r) => (
-              <button
-                key={r}
-                onClick={() => {
-                  if (typeof switchRole === 'function') {
-                    switchRole(r);
-                  }
-                  navigate('/dashboard');
-                }}
-                className={`text-[10px] py-1 px-1.5 rounded-lg border text-center capitalize font-medium transition-colors ${
-                  currentRole === r
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
-                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                }`}
-              >
-                {r}
-              </button>
-            ))}
-          </div>
-        </div>
-
+      {/* Bagian Bawah: Tombol Logout Murni */}
+      <div className="border-t border-slate-800/80 pt-3 mt-3 flex-shrink-0">
         <button
-          onClick={() => {
-            logout();
-            navigate('/login');
-          }}
-          className="text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl px-3 py-2 transition-colors flex items-center gap-2 w-full text-left"
+          onClick={handleLogout}
+          className="w-full text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 border border-transparent hover:border-rose-900/50 rounded-xl px-3 py-2.5 transition-all flex items-center gap-2.5 text-left cursor-pointer"
         >
-          <span>🚪</span>
-          <span>Logout</span>
+          <span className="text-sm">🚪</span>
+          <span>Keluar (Logout)</span>
         </button>
       </div>
     </aside>

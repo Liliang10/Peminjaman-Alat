@@ -8,6 +8,7 @@ import alatRoutes from './routes/alatRoutes.js';
 import kategoriRoutes from './routes/kategoriRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import pinjamRoutes from './routes/pinjamRoutes.js';
+import logRoutes from './routes/logRoutes.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use('/api/alat', alatRoutes);
 app.use('/api/kategori', kategoriRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/peminjaman', pinjamRoutes);
+app.use('/api/logs', logRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'API Peminjaman Alat App Running...' });
